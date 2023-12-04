@@ -1,0 +1,32 @@
+syntax='proto3';
+
+package cart;
+service CartService{
+    rpc createCart(stream User) returns(Cart){}
+    rpc addItem(stream Item) returns(Cart){}
+    rpc removeItem(stream Item) returns(Cart){}
+    rpc getCart(stream GetCart) returns(Cart){}
+}
+
+    message GetCart{
+
+    }
+
+    message User{
+        string userId=1;
+    }
+
+    message Cart{
+        int32 cartId=1;
+        string userId=2;
+        string cartStatus=3;
+        int32 totalItems=4;
+        double totalCost=5;
+    }
+    message Item{
+        int32 cartId=1;
+        int32 productId=2;
+        string productName=3;
+        double productCost=4;
+    }
+

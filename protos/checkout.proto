@@ -1,0 +1,20 @@
+
+syntax='proto3';
+
+package checkout;
+
+service CheckoutService{
+    rpc checkoutRequest(Cart) returns(Result){}
+}
+    message Cart{
+        string cartId = 1;
+        int32 cartCost = 2;
+        string paymentMethod = 3;
+       
+    }
+    
+    message Result{
+        int32 books = 1;
+        double price = 2;
+    }
+

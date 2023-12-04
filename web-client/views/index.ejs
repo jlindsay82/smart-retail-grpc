@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <a href="/">User</a>
+
+    <% if(error) { %> <%= error %> <% } %>
+
+    <form action="/" method="get">
+      <label for="userId">UserId</label>
+      <input type="text" name="userId" />
+      <button type="submit">Login</button>
+    </form>
+
+    <% if(result != null) { %>
+    <b>ANS:</b><%= result %> <% } %>
+  </body>
+</html>
