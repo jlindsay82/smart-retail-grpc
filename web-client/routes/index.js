@@ -26,27 +26,31 @@ var user_client = new user_proto.UserService(
 /* GET home page. */
 router.get("/", function (req, res, next) {
   var userId = req.query.userId;
+  var name = req.query.name;
   var result;
 
-  if (userId != null) {
+  if (!isNaN(userId) && name != null) {
     try {
-      user_client.login({ userId: userId }, function (error, response) {
-        try {
-          res.render("index", {
-            title: "Smart Retail",
-            error: error,
-            result: response.result,
-          });
-        } catch (error) {
-          console.log(error);
-          res.render("index", {
-            title: "Smart Retail",
-            error:
-              "Service is not available at the moment please try again later",
-            result: null,
-          });
+      user_client.login(
+        { userId: userId, name: name },
+        function (error, response) {
+          try {
+            res.render("index", {
+              title: "Smart Retail",
+              error: error,
+              result: response.result,
+            });
+          } catch (error) {
+            console.log(error);
+            res.render("index", {
+              title: "Smart Retail",
+              error:
+                "Service is not available at the moment please try again later",
+              result: null,
+            });
+          }
         }
-      });
+      );
     } catch (error) {
       console.log(error);
       res.render("index", {

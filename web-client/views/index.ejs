@@ -7,17 +7,51 @@
   <body>
     <h1><%= title %></h1>
 
-    <a href="/">User</a>
+    <ul class="nav-list">
+      <li class="nav-item"><h3><a href="/">Login</a><h3></li>
+      <li class="nav-item"><h3><a href="/user">My Details</a></h3></li>
+      <li class="nav-item"><h3><a href="/cart">Cart</a></h3></li>
+      <li class="nav-item"><h3><a href="/finder">Find</a></h3></li>
+    </ul>
+    
 
     <% if(error) { %> <%= error %> <% } %>
+    <div class="grid-container">
 
-    <form action="/" method="get">
-      <label for="userId">UserId</label>
-      <input type="text" name="userId" />
-      <button type="submit">Login</button>
-    </form>
+      <div class="grid-item grid-item1">
+        <form action="/" method="get">
+          <label for="userId">UserId (4 digits)</label>
+          <input type="number" name="userId" />
+          <br />
+          <label for="name">Name</label>
+          <input type="text" name="name" />
+          <br />
+          <button type="submit">Login</button>
+        </form>
+      </div>
 
-    <% if(result != null) { %>
-    <b>ANS:</b><%= result %> <% } %>
+      <div class="grid-item grid-item2"><h1>Service 2</h1></div>
+
+      <div class="grid-item grid-item3"><h1>Service 3</h1></div>
+
+      <div class="cart">
+          <ul>
+            <li>Washing powder</li>
+            <li> Toothpaste</li>
+            <li> Magazine</li>
+            <li> Corn flakes</li>
+            <li> Water</li>
+            <li> Milk</li>
+            <li> Bread</li>
+            <li> Butter</li>
+          </ul>
+      </div>
+      <div class="chat grid-item">
+        <% if(result != null) { %>
+        <b><u>Smart Retail says... </u></b>
+       <p><%= result %> <% } %></p>
+      </div>
+    </div>
+    <script></script>
   </body>
 </html>

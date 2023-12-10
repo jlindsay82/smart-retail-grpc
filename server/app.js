@@ -15,19 +15,47 @@ var USER_PROTO_PATH = __dirname + "../../protos/user.proto";
 var userPackageDefinition = protLoader.loadSync(USER_PROTO_PATH);
 var user_proto = grpc.loadPackageDefinition(userPackageDefinition).user;
 
+var users = []; // Set-up user data array globally
+var activeCartId = 0; //counter starts at zero and will be incremented for every new login call
+
+// function to add a user to the users object array
+function setUser(userId, name, activeCartId) {
+  users.push({ id: userId, name: name, activeCartId: activeCartId });
+}
+
 function login(call, callback) {
   try {
-    var userId = call.request.userId;
-    console.log(userId);
-    if (userId != null) {
-      var result = "Welcome, " + userId;
+    var userId = parseInt(call.request.userId);
+    var name = call.request.name;
+    var validUserId = userId != 0 && userId.toString().length == 4; //validation for userId
+    var result;
+    var activeUser;
+    var findUser;
+    //console.log(userId + ": " + name);
+    if (validUserId && name != null) {
+      findUser = users.find((x) => x.id === userId);
+      if (!findUser) {
+        activeCartId++;
+        console.log(activeCartId);
+        setUser(userId, name, activeCartId);
+        activeUser = users.find((x) => x.id === userId);
+        var result =
+          "Welcome, " + activeUser.name + ": Please enter the store :)";
+      } else {
+        activeUser = users.find((x) => x.id === userId);
+        var result =
+          activeUser.name +
+          ": You are already logged in, please enter the store :)";
+      }
+      console.log(activeUser.id + ": " + activeUser.name); //reflect stored user login details
+
       callback(null, {
         message: undefined,
         result: result,
       });
     } else {
       callback(null, {
-        message:
+        result:
           "Please enter a valid userId or visit www.smart-retail.com/register",
       });
     }
