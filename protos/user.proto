@@ -4,6 +4,7 @@ package user;
 service UserService{
     rpc login(UserLogin) returns(Result){}
     rpc getUser(UserLogin) returns(UserDetails){}
+    rpc myLocation(Location) returns(LocationResponse){}
 }
     message UserLogin{
         int32 userId = 1;
@@ -21,5 +22,15 @@ service UserService{
         //int32 activeCartId = 2;
         //string paymentMethod = 3;
         //string paymentCredentials = 4;
+    }
+
+    message Location{
+        int32 userId = 1;
+        int32 aisle = 2;
+        int32 shelf = 3;
+    }
+
+    message LocationResponse{
+        string result = 1;
     }
 

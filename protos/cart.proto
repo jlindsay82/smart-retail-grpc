@@ -2,26 +2,28 @@ syntax='proto3';
 
 package cart;
 service CartService{
-    rpc createCart(stream User) returns(Cart){}
+    rpc createCart(User) returns(Cart){}
     rpc addItem(stream Item) returns(Cart){}
     rpc removeItem(stream Item) returns(Cart){}
-    rpc getCart(stream GetCart) returns(Cart){}
+    rpc getCart(GetCart) returns(Cart){}
 }
 
     message GetCart{
-
+        int32 userId = 1;
     }
 
     message User{
-        string userId=1;
+        int32 userId=1;
     }
 
     message Cart{
-        int32 cartId=1;
-        string userId=2;
-        string cartStatus=3;
-        int32 totalItems=4;
-        double totalCost=5;
+        //int32 cartId=1;
+        //string userId=2;
+        //string cartStatus=3;
+        //int32 totalItems=4;
+        //double totalCost=5;
+        string result = 1;
+        string message = 2;
     }
     message Item{
         int32 cartId=1;

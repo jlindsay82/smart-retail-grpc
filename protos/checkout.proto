@@ -14,7 +14,7 @@ service CheckoutService{
     }
     
     message Result{
-        int32 books = 1;
+        int32 items = 1;
         double price = 2;
     }
 

@@ -8,7 +8,7 @@
     <h1><%= title %></h1>
 
     <ul class="nav-list">
-      <li class="nav-item nav-current">
+      <li class="nav-item">
         <a href="/"><h3>Login</h3></a>
       </li>
       <li class="nav-item">
@@ -17,22 +17,18 @@
       <li class="nav-item">
         <a href="/cart"><h3>Cart</h3></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item nav-current">
         <a href="/location"><h3>Location</h3></a>
       </li>
     </ul>
-
     <% if(error) { %> <%= error %> <% } %>
     <div class="grid-container">
       <div class="grid-item grid-item1">
-        <form action="/" method="get">
+        <form action="/location" method="get">
           <label for="userId">UserId (4 digits)</label>
           <input type="number" name="userId" />
           <br />
-          <label for="name">Name</label>
-          <input type="text" name="name" />
-          <br />
-          <button type="submit">Login</button>
+          <button type="submit">Find My Location</button>
         </form>
       </div>
       <div class="chat grid-item">
@@ -41,19 +37,13 @@
         <p><%= result %> <% } %></p>
       </div>
       <div class="cart grid-item">
-        <h3>Your Shopping Cart</h3>
-        <ul>
-          <li>Washing powder</li>
-          <li>Toothpaste</li>
-          <li>Magazine</li>
-          <li>Corn flakes</li>
-          <li>Water</li>
-          <li>Milk</li>
-          <li>Bread</li>
-          <li>Butter</li>
-        </ul>
+        <h3>Your Location</h3>
       </div>
     </div>
-    <script></script>
+    <script>
+      window.addEventListener("load", (event) => {
+        console.log("page is fully loaded");
+      });
+    </script>
   </body>
 </html>
