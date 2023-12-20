@@ -39,7 +39,8 @@ a:hover {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 3px;
-  width: 60px;
+  min-width: 60px;
+  width: auto;
   text-align: center;
 }
 
@@ -86,7 +87,15 @@ a:hover {
   text-align: left;
 }
 
-.cart {
+.addToCart {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  width: 100%;
+  text-align: left;
+}
+.getCart {
   grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 2;

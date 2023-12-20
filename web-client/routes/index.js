@@ -1,21 +1,17 @@
 var express = require("express");
 var router = express.Router();
+
 var grpc = require("@grpc/grpc-js");
 var protoLoader = require("@grpc/proto-loader");
 
 var CART_PROTO_PATH = __dirname + "../../../protos/cart.proto";
 var cartPackageDefinition = protoLoader.loadSync(CART_PROTO_PATH);
 var cart_proto = grpc.loadPackageDefinition(cartPackageDefinition).cart;
-/*
-var CHECKOUT_PROTO_PATH = __dirname + "../../protos/checkout.proto";
-var checkoutPackageDefinition = protoLoader.loadSync(CHECKOUT_PROTO_PATH);
-var checkout_proto = grpc.loadPackageDefinition(
-  checkoutPackageDefinition
-).checkout;
-*/
+
 var USER_PROTO_PATH = __dirname + "../../../protos/user.proto";
 var userPackageDefinition = protoLoader.loadSync(USER_PROTO_PATH);
 var user_proto = grpc.loadPackageDefinition(userPackageDefinition).user;
+
 
 var user_client = new user_proto.UserService(
   "0.0.0.0:4000",
@@ -23,9 +19,9 @@ var user_client = new user_proto.UserService(
 );
 
 var cart_client = new cart_proto.CartService(
-  "0.0.0.0:4000",
-  grpc.credentials.createInsecure()
-);
+   "0.0.0.0:4000",
+   grpc.credentials.createInsecure()
+ );
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -114,54 +110,137 @@ router.get("/user", function (req, res, next) {
   }
 });
 
+
 /* Cart Page */
+
 router.get("/cart", function (req, res, next) {
   var userId = req.query.userId;
-  // var name = req.query.name;
   var result;
-
-  if (!isNaN(userId)) {
-    try {
-      cart_client.getCart({ userId: userId }, function (error, response) {
-        try {
-          res.render("cart", {
-            title: "Your Shopping Cart",
-            error: error,
-            result: response.result,
-          });
-        } catch (error) {
-          console.log(error);
-          res.render("cart", {
-            title: "Your Shopping Cart",
-            error:
-              "Service is not available at the moment please try again later",
-            result: null,
-          });
-        }
-      });
-    } catch (error) {
-      console.log(error);
-      res.render("cart", {
-        title: "Your Shopping Cart",
-        error: "Service is not available at the moment please try again later",
-        result: null,
-      });
-    }
-  } else {
+if (!isNaN(userId)) {
+  try {
+    cart_client.createCart({ userId: userId }, function (error, response) {
+      try {
+        res.render("cart", {
+          title: "Your Shopping Cart",
+          error: error,
+          result: response.result,
+        });
+      } catch (error) {
+        console.log(error);
+        res.render("cart", {
+          title: "Your Shopping Cart",
+          error:
+            "Service is not available at the moment please try again later",
+          result: null,
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error);
     res.render("cart", {
       title: "Your Shopping Cart",
-      error: null,
-      result: result,
+      error: "Service is not available at the moment please try again later",
+      result: null,
     });
   }
+} else {
+  res.render("cart", {
+    title: "Your Shopping Cart",
+    error: null,
+    result: result,
+  });
+}
 });
+
+
+router.get("/getCart", function (req, res, next) {
+  var cartId = req.query.cartId;
+  var result;
+if (!isNaN(cartId)) {
+  try {
+    cart_client.getCart({ cartId: cartId}, function (error, response) {
+      try {
+        res.render("cart", {
+          title: "Your Shopping Cart",
+          error: error,
+          result: response.result,
+        });
+      } catch (error) {
+        console.log(error);
+        res.render("cart", {
+          title: "Your Shopping Cart",
+          error:
+            "Service is not available at the moment please try again later",
+          result: null,
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.render("cart", {
+      title: "Your Shopping Cart",
+      error: "Service is not available at the moment please try again later",
+      result: null,
+    });
+  }
+} else {
+  res.render("cart", {
+    title: "Your Shopping Cart",
+    error: null,
+    result: result,
+  });
+}
+});
+
+
+router.get("/addItem", function (req, res, next) {
+  var cartId = req.query.cartId;
+  var item = req.query.item;
+  var cost = req.query.cost;
+  var result;
+if (!isNaN(cartId)) {
+  try {
+    cart_client.addItem({ cartId: cartId,item: item, cost: cost }, function (error, response) {
+      try {
+        res.render("cart", {
+          title: "Your Shopping Cart",
+          error: error,
+          result: response.result,
+        });
+      } catch (error) {
+        console.log(error);
+        res.render("cart", {
+          title: "Your Shopping Cart",
+          error:
+            "Service is not available at the moment please try again later",
+          result: null,
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.render("cart", {
+      title: "Your Shopping Cart",
+      error: "Service is not available at the moment please try again later",
+      result: null,
+    });
+  }
+} else {
+  res.render("cart", {
+    title: "Your Shopping Cart",
+    error: null,
+    result: result,
+  });
+}
+});
+
+
 
 /* Location Page */
 router.get("/location", function (req, res, next) {
   var userId = req.query.userId;
   var aisle = Math.floor(Math.random() * 10) + 1;
   var shelf = Math.floor(Math.random() * 10) + 1;
-  // var name = req.query.name;
   var result;
 
   if (!isNaN(userId)) {

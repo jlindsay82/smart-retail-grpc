@@ -28,21 +28,29 @@
           <label for="userId">UserId (4 digits)</label>
           <input type="number" name="userId" />
           <br />
-          <button type="submit">Refresh Cart</button>
+          <button type="submit">Create New Cart</button>
         </form>
       </div>
-      <div class="cart grid-item">
-        <h3>Your Shopping Cart</h3>
-        <ul>
-          <li>Washing powder</li>
-          <li>Toothpaste</li>
-          <li>Magazine</li>
-          <li>Corn flakes</li>
-          <li>Water</li>
-          <li>Milk</li>
-          <li>Bread</li>
-          <li>Butter</li>
-        </ul>
+      <div class="addToCart grid-item">
+        <form action="/addItem" method="get">
+          <label for="cartId">Your Cart Id</label>
+          <input type="number" name="cartId" />
+          <br />
+          <label for="item">Product Name</label>
+          <input type="text" name="item" />
+          <br />
+          <label for="cost">Cost</label>
+          <input type="text" inputmode="decimal" name="cost" />
+          <button type="submit">Add to Cart</button>
+        </form>
+      </div>
+      <div class="getCart grid-item">
+        <form action="/getCart" method="get">
+          <label for="cartId">Your Cart Id</label>
+          <input type="number" name="cartId" />
+          <br />
+          <button type="submit">Get My Cart</button>
+        </form>
       </div>
       <div class="chat grid-item">
         <% if(result != null) { %>
