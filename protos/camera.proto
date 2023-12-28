@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package camera;
+
+service CameraService{
+    rpc cameraTalk(stream CameraMessage) returns (stream CameraMessage) {}
+}
+
+message CameraMessage{
+    string id = 1;
+    string status = 2;
+    int32 location = 3;
+    int32 detectedShoppers = 4;
+}

@@ -6,12 +6,6 @@ var CART_PROTO_PATH = __dirname + "../../protos/cart.proto";
 var cartPackageDefinition = protLoader.loadSync(CART_PROTO_PATH);
 var cart_proto = grpc.loadPackageDefinition(cartPackageDefinition).cart;
 
-// var CHECKOUT_PROTO_PATH = __dirname + "../../protos/checkout.proto";
-// var checkoutPackageDefinition = protLoader.loadSync(CHECKOUT_PROTO_PATH);
-// var checkout_proto = grpc.loadPackageDefinition(
-//   checkoutPackageDefinition
-// ).checkout;
-
 var USER_PROTO_PATH = __dirname + "../../protos/user.proto";
 var userPackageDefinition = protLoader.loadSync(USER_PROTO_PATH);
 var user_proto = grpc.loadPackageDefinition(userPackageDefinition).user;
@@ -210,14 +204,10 @@ function createCart(call, callback) {
 // utility function to add an item's cost/count to an existing cart object to the carts array
 function addToCart(cartId, cost) {
   var cartIndex = carts.findIndex((x) => x.cartId === cartId)
-
   console.log("Before update: ", carts[cartIndex])
-
   carts[cartIndex].totalItems ++;
   carts[cartIndex].totalCost += cost;
-
   console.log("After update: ", carts[cartIndex])
-
 }
 
 // call function for creating a new shopping cart object
@@ -268,7 +258,7 @@ function getCart(call, callback) {
     if (findCart) {
       var result =
         "I have found your cart. You are using cart id: " +
-        findCart.cartId + ". The total number of items is " + findCart.totalItems + ". The total cost of your cart is €" + parseFloat(findCart.totalCost) + ".";
+        findCart.cartId + ". The total number of items is " + findCart.totalItems + ". The total cost of your cart is €" + parseFloat(findCart.totalCost).toFixed(2) + ".";
       callback(null, {
         message: undefined,
         result: result,
