@@ -4,7 +4,6 @@ package cart;
 service CartService{
     rpc createCart(User) returns(Cart){}
     rpc addItem(Item) returns(Cart){}
-    rpc removeItem(stream Item) returns(Cart){}
     rpc getCart(GetCart) returns(Cart){}
 }
 
