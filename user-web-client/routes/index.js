@@ -4,11 +4,11 @@ var router = express.Router();
 var grpc = require("@grpc/grpc-js");
 var protoLoader = require("@grpc/proto-loader");
 
-var CART_PROTO_PATH = __dirname + "../../../protos/cart.proto";
+var CART_PROTO_PATH = __dirname + "../../protos/cart.proto";
 var cartPackageDefinition = protoLoader.loadSync(CART_PROTO_PATH);
 var cart_proto = grpc.loadPackageDefinition(cartPackageDefinition).cart;
 
-var USER_PROTO_PATH = __dirname + "../../../protos/user.proto";
+var USER_PROTO_PATH = __dirname + "../../protos/user.proto";
 var userPackageDefinition = protoLoader.loadSync(USER_PROTO_PATH);
 var user_proto = grpc.loadPackageDefinition(userPackageDefinition).user;
 
@@ -71,7 +71,6 @@ router.get("/", function (req, res, next) {
 /* User Page */
 router.get("/user", function (req, res, next) {
   var userId = req.query.userId;
-  // var name = req.query.name;
   var result;
 
   if (!isNaN(userId)) {
@@ -112,7 +111,6 @@ router.get("/user", function (req, res, next) {
 
 
 /* Cart Page */
-
 router.get("/cart", function (req, res, next) {
   var userId = req.query.userId;
   var result;

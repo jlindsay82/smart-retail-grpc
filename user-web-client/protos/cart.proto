@@ -1,0 +1,28 @@
+syntax='proto3';
+
+package cart;
+service CartService{
+    rpc createCart(User) returns(Cart){}
+    rpc addItem(Item) returns(Cart){}
+    rpc getCart(GetCart) returns(Cart){}
+}
+
+    message GetCart{
+        int32 cartId = 1;
+    }
+
+    message User{
+        int32 userId=1;
+    }
+
+    message Cart{
+        string result = 1;
+        string message = 2;
+    }
+
+    message Item{
+        int32 cartId=1;
+        string item=2;
+        double cost=3;
+    }
+

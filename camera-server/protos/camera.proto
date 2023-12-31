@@ -5,10 +5,7 @@ package camera;
 service CameraService{
     rpc cameraTalk(stream CameraMessage) returns (stream CameraMessage) {}
     rpc productLowAlert(stream ProductWatch) returns (ProductAlert) {}
-<<<<<<< HEAD
     rpc serviceStatus(JoinServiceStatus) returns (stream ServiceStatus) {}
-=======
->>>>>>> 2956c286ad78fa527f139d32f2699c87995d4d6e
 }
 
 message CameraMessage{
@@ -28,18 +25,12 @@ message ProductAlert{
     string id = 1;
     int32 shelf = 2;
     int32 productCount = 3;
-<<<<<<< HEAD
 }
 
 message JoinServiceStatus{
-  //  string id = 1;
 }
 
 message ServiceStatus{
     string status = 1;
     int32 clientCount = 2;
-    // string movieType = 1;
-    // uint32 favouriteMovie = 2;
-=======
->>>>>>> 2956c286ad78fa527f139d32f2699c87995d4d6e
 }

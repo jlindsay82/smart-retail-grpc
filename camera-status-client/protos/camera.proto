@@ -28,12 +28,9 @@ message ProductAlert{
 }
 
 message JoinServiceStatus{
-   //string id = 1;
 }
 
 message ServiceStatus{
     string status = 1;
     int32 clientCount = 2;
-    // string movieType = 1;
-    // uint32 favouriteMovie = 2;
 }

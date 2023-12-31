@@ -14,14 +14,10 @@ service UserService{
     message Result{
         string result = 1;
         string message = 2;
-        //int32 cartId = 2;
     }
 
    message UserDetails{
         string result = 1;
-        //int32 activeCartId = 2;
-        //string paymentMethod = 3;
-        //string paymentCredentials = 4;
     }
 
     message Location{
