@@ -13,20 +13,10 @@ var client = new camera_proto.CameraService(
   grpc.credentials.createInsecure()
 );
 
-// Initialise variables
-//var id = readlineSync.question("Input your 4 digit camera id: ");
+// Initialise variable
 var call = client.serviceStatus({});
 
-// //Define call logging
-// call.on("data", function (resp) {
-//   console.log("Camera Service Status is " + resp.status + ". Number of connected clients is " + resp.clientCount);
-// });
-// call.on("end", function () {});
-// call.on("error", function (e) {
-//   console.log("Cannot connect to camera service");
-// });
-
-
+// Call service and handle response
 call.on("data", function (resp) {
   console.log(
     "Camera Service Status is " + resp.status + ". Number of connected clients is " + resp.clientCount
@@ -38,38 +28,3 @@ call.on("end", function () {});
 call.on("error", function (e) {
   console.log(e);
 });
-
-
-
-// call.on("data", function (response) {
-//   console.log(
-//     response.favouriteMovie +
-//       " people chose " +
-//       response.movieType +
-//       " as their favorite movie"
-//   );
-// });
-
-// call.on("end", function () {});
-
-// call.on("error", function (e) {
-//   console.log(e);
-// });
-
-//Call sending initial camera data to the service
-// client.serviceStatus({
-//   id: id,
-// });
-
-// Post camera status, location and number of detected shoppers data every 30 seconds to the camera service
-// setInterval(cameraStatus,30000)
-
-// function cameraStatus(){
-//   detectedShoppers = Math.floor(Math.random() * 10) + 1;
-//   call.write({
-//     id: id,
-//     status: status,
-//     location: location,
-//     detectedShoppers: detectedShoppers,
-//   });
-// };
