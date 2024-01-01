@@ -1,0 +1,63 @@
+smart-retail-grpc
+├── .gitignore
+├── camera-product-client
+│   ├── app.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── protos
+│       └── camera.proto
+├── camera-server
+│   ├── app.js
+│   ├── node_modules
+
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── protos
+│   │   └── camera.proto
+│   └── service
+│       ├── alert.js
+│       ├── status.js
+│       └── talk.js
+├── camera-status-client
+│   ├── app.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── protos
+│       └── camera.proto
+├── camera-talk-client
+│   ├── app.js
+│   ├── node_modules
+
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── protos
+│   │   ├── cart.proto
+│   │   └── user.proto
+│   └── service
+│       ├── cart.js
+│       └── user.js
+└── user-web-client
+    ├── app.js
+    ├── bin
+    │   └── www
+    ├── node_modules
+
+    ├── package-lock.json
+    ├── package.json
+    ├── protos
+    │   ├── cart.proto
+    │   └── user.proto
+    ├── public
+    │   ├── images
+    │   │   └── store-map.png
+    │   ├── javascripts
+    │   └── stylesheets
+    │       └── style.css
+    ├── routes
+    │   └── index.js
+    └── views
+        ├── cart.ejs
+        ├── error.ejs
+        ├── index.ejs
+        ├── location.ejs
+        └── user.ejs

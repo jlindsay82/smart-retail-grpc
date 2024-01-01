@@ -27,7 +27,7 @@ function updateLocation(userId, aisle, shelf) {
   console.log("After update: ", users[userIndex])
 }
 
-//function to llg valid user into a shopping session, storing their details
+//function to log a valid user into a shopping session, storing their details
 function login(call, callback) {
   try {
     var userId = parseInt(call.request.userId);

@@ -1,3 +1,4 @@
+//Mount dependencies for web-client
 var express = require("express");
 var router = express.Router();
 
@@ -23,7 +24,7 @@ var cart_client = new cart_proto.CartService(
    grpc.credentials.createInsecure()
  );
 
-/* GET home page. */
+/* GET home page route for login */
 router.get("/", function (req, res, next) {
   var userId = req.query.userId;
   var name = req.query.name;
