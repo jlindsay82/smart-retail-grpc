@@ -3,9 +3,6 @@ var clients = {};
 
 //function defines call response for each client found in clients array. If not found, data is added to clients array
 
-//Initialise variables
-var clients = {};
-
 function cameraTalk(call) {
   call.on("data", function (camera_message) {
     if (!(camera_message.id in clients)) {

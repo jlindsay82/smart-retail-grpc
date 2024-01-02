@@ -1,6 +1,6 @@
 smart-retail-grpc
 ├── .gitignore
-├── camera-product-client
+├── camera-alert-client
 │   ├── app.js
 │   ├── package-lock.json
 │   ├── package.json
